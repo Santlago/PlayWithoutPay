@@ -106,7 +106,7 @@ Edita os dados do usuário especificado no `id`, utilizando as informações env
 ```js
 {
     "login": "johnmarston",
-    "password": "johnmarston123"
+    "password": "johnmarston1234"
 }
 ```
 
