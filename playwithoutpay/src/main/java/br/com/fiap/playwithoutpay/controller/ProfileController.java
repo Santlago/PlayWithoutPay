@@ -18,31 +18,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.playwithoutpay.model.User;
-import br.com.fiap.playwithoutpay.repository.UserRepository;
+import br.com.fiap.playwithoutpay.model.Profile;
+import br.com.fiap.playwithoutpay.repository.ProfileRepository;
 
 @RestController
-@RequestMapping("user")
-public class UserController {
+@RequestMapping("profile")
+public class ProfileController {
 
     Logger log = LoggerFactory.getLogger(getClass());
     
     @Autowired
-    UserRepository repository;
+    ProfileRepository repository;
 
-    // User register
+    // Profile register
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User create (@RequestBody User user) {
-        log.info("Registering user {}", user);
-        return repository.save(user);
+    public Profile create (@RequestBody Profile profile) {
+        log.info("Registering Profile {}", profile);
+        return repository.save(profile);
     }
 
-    // User information
+    // Profile information
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<User> show(@PathVariable Long id) {
-        log.info("Getting user with id {}", id);
+    public ResponseEntity<Profile> show(@PathVariable Long id) {
+        log.info("Getting Profile with id {}", id);
         
         return repository
             .findById(id)
@@ -50,28 +50,28 @@ public class UserController {
             .orElse(ResponseEntity.notFound().build());
     }
 
-    // // User delete
+    // // Profile delete
     // @DeleteMapping("{id}")
     // public ResponseEntity delete(@PathVariable Long id) {
-    //     log.info("Deleteing user with id {}", id);
-    //     for (User user : repository) {
-    //         if (user.id().equals(id))
-    //             repository.remove(user);
+    //     log.info("Deleteing Profile with id {}", id);
+    //     for (Profile Profile : repository) {
+    //         if (Profile.id().equals(id))
+    //             repository.remove(Profile);
     //             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     //     }
     //     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     // }
 
-    // // User updating
+    // // Profile updating
     // @PutMapping("{id}")
-    // public ResponseEntity update(@PathVariable Long id, @RequestBody User newuser) {
-    //     log.info("Updating user {}", newuser);
+    // public ResponseEntity update(@PathVariable Long id, @RequestBody Profile newProfile) {
+    //     log.info("Updating Profile {}", newProfile);
     //     for (int i = 0; i < repository.size(); i++) {
-    //         User user = repository.get(i);
-    //         if (user.id().equals(id)) {
-    //             User updatedUser = new User(id, newuser.login(), newuser.password());
-    //             repository.set(i, updatedUser);
-    //             return ResponseEntity.status(HttpStatus.OK).body(updatedUser);    
+    //         Profile Profile = repository.get(i);
+    //         if (Profile.id().equals(id)) {
+    //             Profile updatedProfile = new Profile(id, newProfile.login(), newProfile.password());
+    //             repository.set(i, updatedProfile);
+    //             return ResponseEntity.status(HttpStatus.OK).body(updatedProfile);    
     //         }
     //     }
     //     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

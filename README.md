@@ -16,7 +16,7 @@ API do projeto PlayWithoutPay
 <!-- Dúvida quanto ao login -->
 
 ### Cadastrar Usuário 
-`POST` /user
+`POST` /profile
 
 Cadastra um novo usuário com os dados enviados no corpo da requisição
 
@@ -53,14 +53,14 @@ Cadastra um novo usuário com os dados enviados no corpo da requisição
 ---
 
 ### Acessar Perfil
-`GET` /user/`{id}`
+`GET` /profile/`{id}`
 
 Retorna as informações do perfil com o `id` informado com o parâmetro da path
 
 #### Exemplo de Resposta <!-- (dúvida quanto ao path) -->
 
 ```js
-// requisição para /user/1
+// requisição para /profile/1
 {
     "id": 1,
     "login": "johnmarston",
@@ -79,7 +79,7 @@ Retorna as informações do perfil com o `id` informado com o parâmetro da path
 
 ### Apagar Usuário
 
-`DELETE` /user/`{id}`
+`DELETE` /profile/`{id}`
 
 Apaga o usuário como o `id` especificado no parâmetro de path
 
@@ -92,7 +92,7 @@ Apaga o usuário como o `id` especificado no parâmetro de path
 
 ### Atualizar Usuário
 
-`PUT` /user/`{id}`
+`PUT` /profile/`{id}`
 
 Edita os dados do usuário especificado no `id`, utilizando as informações enviadas no corpo da requisição.
 
