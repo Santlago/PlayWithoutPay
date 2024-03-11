@@ -1,11 +1,17 @@
 package br.com.fiap.playwithoutpay.model;
 
-import java.util.Random;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 
-public record User (Long id, String login, String password) {
-    public User(Long id, String login, String password) {
-        this.id = Math.abs(new Random().nextLong());
-        this.login = login;
-        this.password = password;
-    }
+@Data
+@Entity
+public class User {
+    
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String login;
+    private String password;
 }
