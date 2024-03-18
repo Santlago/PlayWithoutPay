@@ -3,7 +3,7 @@ package br.com.fiap.playwithoutpay.validation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class FavoriteCommentValidator implements ConstraintValidator<FavoriteComment, String> {
+public class CommentCommentValidator implements ConstraintValidator<CommentComment, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {

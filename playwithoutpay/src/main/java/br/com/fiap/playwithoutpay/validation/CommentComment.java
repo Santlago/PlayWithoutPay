@@ -10,10 +10,10 @@ import jakarta.validation.Payload;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = FavoriteCommentValidator.class)
-public @interface FavoriteComment {
+@Constraint(validatedBy = CommentCommentValidator.class)
+public @interface CommentComment {
 
-    String message() default "{favorite.comment}";
+    String message() default "{comment.comment}";
 
     Class<?>[] groups() default {};
 

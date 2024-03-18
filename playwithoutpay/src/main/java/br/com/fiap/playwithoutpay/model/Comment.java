@@ -2,7 +2,7 @@ package br.com.fiap.playwithoutpay.model;
 
 import java.time.LocalDate;
 
-import br.com.fiap.playwithoutpay.validation.FavoriteComment;
+import br.com.fiap.playwithoutpay.validation.CommentComment;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,8 +18,8 @@ public class Comment {
 
     // private Long author_id;
 
-    @FavoriteComment
-    private String description;
+    @CommentComment
+    private String comment;
 
     private LocalDate date;
 }
