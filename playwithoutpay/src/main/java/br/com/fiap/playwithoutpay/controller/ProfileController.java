@@ -1,7 +1,7 @@
 package br.com.fiap.playwithoutpay.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.playwithoutpay.model.Profile;
 import br.com.fiap.playwithoutpay.repository.ProfileRepository;
@@ -50,30 +51,30 @@ public class ProfileController {
             .orElse(ResponseEntity.notFound().build());
     }
 
-    // // Profile delete
-    // @DeleteMapping("{id}")
-    // public ResponseEntity delete(@PathVariable Long id) {
-    //     log.info("Deleteing Profile with id {}", id);
-    //     for (Profile Profile : repository) {
-    //         if (Profile.id().equals(id))
-    //             repository.remove(Profile);
-    //             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    //     }
-    //     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    // }
+    // Profile delete
+    @DeleteMapping("{id}")
+    @ResponseStatus(NO_CONTENT)
+    public void destroy(@PathVariable Long id) {
+        log.info("deleting profile {}", id);
+        verifyIfProfileExists(id);
+        repository.deleteById(id);
+    }
 
-    // // Profile updating
-    // @PutMapping("{id}")
-    // public ResponseEntity update(@PathVariable Long id, @RequestBody Profile newProfile) {
-    //     log.info("Updating Profile {}", newProfile);
-    //     for (int i = 0; i < repository.size(); i++) {
-    //         Profile Profile = repository.get(i);
-    //         if (Profile.id().equals(id)) {
-    //             Profile updatedProfile = new Profile(id, newProfile.login(), newProfile.password());
-    //             repository.set(i, updatedProfile);
-    //             return ResponseEntity.status(HttpStatus.OK).body(updatedProfile);    
-    //         }
-    //     }
-    //     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    // }
+    // Profile update
+    @PutMapping("{id}")
+    public Profile update(@PathVariable Long id, @RequestBody Profile profile) {
+        log.info("update profile from {} to {}", id, profile);
+
+        verifyIfProfileExists(id);
+        profile.setId(id);
+        return repository.save(profile);
+    }
+
+    private void verifyIfProfileExists(Long id) {
+        repository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        NOT_FOUND,
+                        "There is no profile with this id"));
+    }
 }
