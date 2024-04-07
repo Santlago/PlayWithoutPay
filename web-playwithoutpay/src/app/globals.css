@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --border: 1px solid var(--50-50, rgba(217, 217, 217, 0.20));
+  --background: var(--Baltic-Sea-950, #1F1B24);
+  --color: var(--Baltic-Sea-50, #F5F4F9);
+}
+
+
+body {
+  color: var(--color);
+  background: var(--background);
+}
+
+/* @layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+} */
