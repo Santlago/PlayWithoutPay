@@ -16,6 +16,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
+        "gray" : '#949494',
         "active" : 'rgba(217, 217, 217, 0.20)', 
         'hover' : 'rgba(217, 217, 217, 0.20)',
         'border' : 'rgba(217, 217, 217, 0.20)',
@@ -28,9 +29,29 @@ const config: Config = {
         'inter': ['Inter', 'sans-serif'],
         'logo': ['Major Mono Display', 'monospace'],
       },
+      borderRadius: {
+        'primary': '0.4375rem',
+      }
     },
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [nextui(
+    {
+      layout: {
+        radius: {
+          medium: "0.4375rem"
+        }
+      },
+      themes: {
+       dark: {
+         colors: {
+          primary: {
+            DEFAULT: "rgba(217, 217, 217, 0.20)"
+          }
+         }
+       }
+      }
+    }
+  )],
 };
 export default config;
