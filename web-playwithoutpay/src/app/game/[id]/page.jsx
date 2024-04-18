@@ -3,7 +3,10 @@ import { NavBar } from "@/components/NavBar"
 import { SubmitButton } from "@/components/SubmitButton"
 import { Button, Image, Input, Textarea } from "@nextui-org/react"
 import Link from "next/link"
-import { getComments } from "./get"
+import { getComments } from "../../actions/comments/get"
+import { Ellipsis } from "lucide-react"
+import { OptionActions } from "@/components/OptionsActions"
+import { toast } from "react-hot-toast"
 
 export default async function Game({ params }) {
     const gameId = params.id == 0 ? '' : params.id
@@ -24,6 +27,7 @@ export default async function Game({ params }) {
                 <div className="flex flex-col gap-5">
                     <Image
                         src={gameData.thumbnail}
+                        className="min-w-[20rem]"
                     />
                     <Link href={gameData.game_url} target="blank">
                         <Button className="w-full">Play</Button>
@@ -89,7 +93,7 @@ export default async function Game({ params }) {
 
                     <div>
                         <h3 className="text-2xl font-semibold text-color">User Reviews</h3>
-                        <div className="flex flex-col justify-center">
+                        <div className="flex flex-col gap-5 justify-center">
                             {comments.map(comment => (
                                 <div key={comment.id} className="flex items-center">
                                     <img className="w-20 rounded-full overflow-hidden" src="https://i.pravatar.cc/300" alt="avatar do usuario" />
@@ -98,6 +102,7 @@ export default async function Game({ params }) {
                                         label="Autor"
                                         labelPlacement="outside"
                                         defaultValue={comment.comment}
+                                        // endContent={<OptionActions onDelete={handleDelete(comment.id)}/>}
                                     />
                                 </div>
                             ))}
