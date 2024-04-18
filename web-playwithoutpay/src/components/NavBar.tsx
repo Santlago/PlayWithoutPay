@@ -13,7 +13,7 @@ export function NavBar(props: NavBarProps) {
     const classActive = "bg-active"
 
     return (
-        <nav className="max-w-80 text-color font-inter flex min-h-screen flex-col justify-between flex-grow border-border border-r-2">
+        <nav className="max-w-80 text-color font-inter flex min-h-screen flex-col justify-between flex-grow border-border border-r-2 fixed z-50">
             <Link href="/">
                 <h1 className="text-4xl font-logo pt-10 pr-24 pb-4 pl-8 font-normal">
                     Play Without Pay

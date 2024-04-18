@@ -15,7 +15,7 @@ public class CommentCommentValidator implements ConstraintValidator<CommentComme
 
         // Check if the description length is within acceptable bounds
         int minLength = 5; // Minimum length for description
-        int maxLength = 100; // Maximum length for description
+        int maxLength = 200; // Maximum length for description
         int descriptionLength = value.length();
         if (descriptionLength < minLength || descriptionLength > maxLength) {
             return false; // Description length is not within bounds
