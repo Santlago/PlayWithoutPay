@@ -1,5 +1,37 @@
-export default function CommentItem() {
-    return(
-        <></>
+import { useRouter } from "next/navigation"
+import { toast } from "react-hot-toast"
+import { destroy } from "../actions/comments/destroy"
+
+interface CommentItemProps {
+    comment: Comment
+}
+
+export default function CommentItem(props: CommentItemProps) {
+
+    const router = useRouter
+    const { comment } = props
+
+    function handleDelete() {
+        toast.promise(
+            destroy(comment.id),
+            {
+                loading: 'excluindo...',
+                success: "Excluída com sucesso!",
+                error: "Erro ao excluir.",
+            }
+        )
+    }
+
+    return (
+        <div key={comment.id} className="flex items-center">
+            <img className="w-20 rounded-full overflow-hidden" src="https://i.pravatar.cc/300" alt="avatar do usuario" />
+            <Textarea
+                isReadOnly
+                label="Autor"
+                labelPlacement="outside"
+                defaultValue={comment.comment}
+            // endContent={<OptionActions onDelete={handleDelete(comment.id)}/>}
+            />
+        </div>
     )
 }

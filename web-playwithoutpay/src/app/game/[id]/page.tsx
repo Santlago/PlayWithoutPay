@@ -4,19 +4,21 @@ import { SubmitButton } from "@/components/SubmitButton"
 import { Button, Image, Input, Textarea } from "@nextui-org/react"
 import Link from "next/link"
 import { getComments } from "../../actions/comments/get"
-import { Ellipsis } from "lucide-react"
-import { OptionActions } from "@/components/OptionsActions"
-import { toast } from "react-hot-toast"
+import React from "react"
 
-export default async function Game({ params }) {
-    const gameId = params.id == 0 ? '' : params.id
+interface Comment {
+    id: number,
+    comment: String,
+    date: string
+}
+
+export default async function Game() {
+    // const gameId = params.id == 0 ? '' : params.id
 
     const gamePromise = await fetch(`https://www.freetogame.com/api/game?id=${gameId}`)
     const gameData = await gamePromise.json()
-    console.log(gameData)
 
-    const comments = await getComments()
-    console.log(comments)
+    const comments: Comment[] = await getComments()
 
     return (
         <main className="flex font-inter w-full">

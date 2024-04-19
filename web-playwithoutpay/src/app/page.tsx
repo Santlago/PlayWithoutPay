@@ -1,4 +1,5 @@
 import { NavBar } from "@/components/NavBar";
+import {teste} from "../components/NavBar"
 import { Button, Input } from "@nextui-org/react";
 import { Filter, Search } from "lucide-react";
 import Link from "next/link";
