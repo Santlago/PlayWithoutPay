@@ -1,6 +1,10 @@
+"use client"
+
 import { useRouter } from "next/navigation"
 import { toast } from "react-hot-toast"
 import { destroy } from "../actions/comments/destroy"
+import { Textarea } from "@nextui-org/react"
+import { OptionActions } from "@/components/OptionsActions"
 
 interface CommentItemProps {
     comment: Comment
@@ -8,7 +12,7 @@ interface CommentItemProps {
 
 export default function CommentItem(props: CommentItemProps) {
 
-    const router = useRouter
+    const router = useRouter()
     const { comment } = props
 
     function handleDelete() {
@@ -30,7 +34,7 @@ export default function CommentItem(props: CommentItemProps) {
                 label="Autor"
                 labelPlacement="outside"
                 defaultValue={comment.comment}
-            // endContent={<OptionActions onDelete={handleDelete(comment.id)}/>}
+                endContent={<OptionActions onEdit={() => router.push(`/comments/${comment.id}`)} onDelete={handleDelete} />}
             />
         </div>
     )

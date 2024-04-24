@@ -1,10 +1,10 @@
 'use client'
 
-import {  
-    Dropdown,  
-    DropdownTrigger,  
-    DropdownMenu,  
-    DropdownSection,  
+import {
+    Dropdown,
+    DropdownTrigger,
+    DropdownMenu,
+    DropdownSection,
     DropdownItem,
     Button
 } from "@nextui-org/react";
@@ -17,23 +17,33 @@ interface OptionActionProps {
     onDelete: MouseEventHandler
 }
 
-export function OptionActions({onEdit, onDelete}: OptionActionProps){
+export function OptionActions({ onEdit, onDelete }: OptionActionProps) {
 
     return (
         <Dropdown>
-        <DropdownTrigger>
-            <Ellipsis />
-        </DropdownTrigger>
-        <DropdownMenu aria-label="Static Actions">
-            {/* <Link href={`/comments${commentId.id}`}> */}
-            <DropdownItem key="edit" startContent={<Pencil size={18} onClick={onEdit} />} >
-                Editar
-            </DropdownItem>
-            {/* </Link> */}
-            <DropdownItem key="delete" startContent={<Trash size={18} />} onClick={onDelete} className="text-danger" color="danger">
-                Apagar
-            </DropdownItem>
-        </DropdownMenu>
+            <DropdownTrigger>
+                <Ellipsis />
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Static Actions">
+                <DropdownItem
+                    key="edit"
+                    startContent={<Pencil size={18} />}
+                    onClick={onEdit}
+                >
+                    Editar
+                </DropdownItem>
+
+
+                <DropdownItem
+                    key="delete"
+                    startContent={<Trash size={18} />}
+                    className="text-danger"
+                    color="danger"
+                    onClick={onDelete}
+                >
+                    Apagar
+                </DropdownItem>
+            </DropdownMenu>
         </Dropdown>
     )
 }

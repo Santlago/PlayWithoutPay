@@ -5,6 +5,8 @@ import { Button, Image, Input, Textarea } from "@nextui-org/react"
 import Link from "next/link"
 import { getComments } from "../../actions/comments/get"
 import React from "react"
+import CommentItem from "@/app/comments/CommentItem"
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher"
 
 interface Comment {
     id: number,
@@ -12,13 +14,16 @@ interface Comment {
     date: string
 }
 
-export default async function Game() {
-    // const gameId = params.id == 0 ? '' : params.id
+export default async function Game({params}: Params) {
+    const {id} = params
+    console.log(id)
 
-    const gamePromise = await fetch(`https://www.freetogame.com/api/game?id=${gameId}`)
+    const gamePromise = await fetch(`https://www.freetogame.com/api/game?id=${id}`)
     const gameData = await gamePromise.json()
+    console.log(gameData)
 
     const comments: Comment[] = await getComments()
+    console.log(comments)
 
     return (
         <main className="flex font-inter w-full">
@@ -63,7 +68,7 @@ export default async function Game() {
                     <div>
                         <h3 className="text-2xl font-semibold text-color">{gameData.title} Screenshots</h3>
                         <div className="flex gap-5">
-                            {gameData.screenshots.map(screenshot => (
+                            {gameData.screenshots.map((screenshot: any) => (
                                 <div key={screenshot.id}>
                                     <Image
                                         src={screenshot.image}
@@ -96,18 +101,7 @@ export default async function Game() {
                     <div>
                         <h3 className="text-2xl font-semibold text-color">User Reviews</h3>
                         <div className="flex flex-col gap-5 justify-center">
-                            {comments.map(comment => (
-                                <div key={comment.id} className="flex items-center">
-                                    <img className="w-20 rounded-full overflow-hidden" src="https://i.pravatar.cc/300" alt="avatar do usuario" />
-                                    <Textarea
-                                        isReadOnly
-                                        label="Autor"
-                                        labelPlacement="outside"
-                                        defaultValue={comment.comment}
-                                        // endContent={<OptionActions onDelete={handleDelete(comment.id)}/>}
-                                    />
-                                </div>
-                            ))}
+                            {comments.map(comment => <CommentItem comment={comment} />)}
                         </div>
                     </div>
                 </div>
