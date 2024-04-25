@@ -32,7 +32,7 @@ export default async function Home() {
       games: mmorpgData,
     },
     {
-      id: 1,
+      id: 3,
       name: "Shooter",
       games: shooterData,
     }
@@ -44,7 +44,7 @@ export default async function Home() {
         <NavBar active="freegames" />
 
       </div>
-      <div className="flex flex-col justify-between h-screen pt-6 pr-6 pb-6 overflow-hidden ml-[22rem]">
+      <div className="flex flex-col justify-between h-screen pt-6 pr-6 pb-6 overflow-x-hidden ml-[22rem]">
         <section >
           <div className="flex justify-center items-end">
             <Input
@@ -62,10 +62,10 @@ export default async function Home() {
         {categories.map(category => (
           <section key={category.id} className="flex flex-col mt-10">
             <span className="text-2xl font-semibold text-gray">{category.name}</span>
-            <div id="games" className="flex justify-between h-full gap-6">
-              {category.games.slice(0, 5).map((game: any) => (
+            <div id="games" className="flex justify-between snap-x overflow-x-auto h-full gap-6">
+              {category.games.map((game: any) => (
                 <Link key={game.id} href={`/game/${game.id}`} target="blank">
-                  <div className="flex flex-col w-72">
+                  <div className="flex flex-col w-72 snap-center">
                     <img
                       src={game.thumbnail}
                       alt="thumbnail"

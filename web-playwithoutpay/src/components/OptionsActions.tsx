@@ -30,7 +30,7 @@ export function OptionActions({ onEdit, onDelete }: OptionActionProps) {
                     startContent={<Pencil size={18} />}
                     onClick={onEdit}
                 >
-                    Editar
+                    Edit
                 </DropdownItem>
 
 
@@ -41,7 +41,7 @@ export function OptionActions({ onEdit, onDelete }: OptionActionProps) {
                     color="danger"
                     onClick={onDelete}
                 >
-                    Apagar
+                    Delete
                 </DropdownItem>
             </DropdownMenu>
         </Dropdown>

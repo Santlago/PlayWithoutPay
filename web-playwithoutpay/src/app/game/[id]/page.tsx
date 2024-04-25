@@ -30,13 +30,13 @@ export default async function Game({params}: Params) {
             <div>
                 <NavBar />
             </div>
-            <div id="main" className="flex justify-center gap-12 h-full w-screen pt-5 ml-[22rem]">
+            <div id="main" className="flex justify-center gap-12 h-full w-screen pr-6 pt-5 ml-[22rem]">
                 <div className="flex flex-col gap-5">
                     <Image
                         src={gameData.thumbnail}
                         className="min-w-[20rem]"
                     />
-                    <Link href={gameData.game_url} target="blank">
+                    <Link href={gameData.game_url} target="_blank">
                         <Button className="w-full">Play</Button>
                     </Link>
                 </div>
@@ -69,15 +69,16 @@ export default async function Game({params}: Params) {
                         <h3 className="text-2xl font-semibold text-color">{gameData.title} Screenshots</h3>
                         <div className="flex gap-5">
                             {gameData.screenshots.map((screenshot: any) => (
-                                <div key={screenshot.id}>
+                                <div key={screenshot.id} className="">
                                     <Image
                                         src={screenshot.image}
-                                        className="w-[12rem] rounded-[.3rem]"
+                                        className=" rounded-[.3rem]"
                                     />
                                 </div>
                             ))}
                         </div>
                     </div>
+
                     <div>
                         <h3 className="text-2xl font-semibold text-color">About {gameData.title}</h3>
                         <p className="text-base font-normal text-gray">{gameData.description}</p>
