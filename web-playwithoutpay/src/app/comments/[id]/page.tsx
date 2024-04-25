@@ -13,7 +13,8 @@ export default async function EditComment({params}: Params) {
 
     return (
         <div>
-            <h1></h1>
+            <h1>{id}</h1>
+            {/* <h2>{comment.title}</h2> */}
         </div>
     )
 }
