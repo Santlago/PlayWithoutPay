@@ -7,11 +7,13 @@ import { getComments } from "../../actions/comments/get"
 import React from "react"
 import CommentItem from "@/app/comments/CommentItem"
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher"
+import { getLatest } from "@/app/actions/comments/comments"
 
 interface Comment {
     id: number,
     comment: String,
-    date: string
+    date: string,
+    gameId: number
 }
 
 export default async function Game({params}: Params) {
@@ -22,8 +24,11 @@ export default async function Game({params}: Params) {
     const gameData = await gamePromise.json()
     console.log(gameData)
 
-    const comments: Comment[] = await getComments()
+    const comments: Comment[] = await getLatest()
     console.log(comments)
+
+    const filteredComments = comments.filter(comment => comment.gameId == id);
+    console.log(filteredComments)
 
     return (
         <main className="flex font-inter w-full">
@@ -56,6 +61,7 @@ export default async function Game({params}: Params) {
                             <div className="flex justify-center items-center">
                                 <img className="w-14 rounded-full overflow-hidden" src="https://i.pravatar.cc/300" alt="avatar do usuario" />
                             </div>
+                            <input type="hidden" key="gameId" name="gameId" value={id}></input>
                             <Input
                                 key="comment"
                                 name="comment"
@@ -102,7 +108,7 @@ export default async function Game({params}: Params) {
                     <div>
                         <h3 className="text-2xl font-semibold text-color">User Reviews</h3>
                         <div className="flex flex-col gap-5 justify-center">
-                            {comments.map(comment => <CommentItem comment={comment} />)}
+                            {filteredComments.map(comment => <CommentItem comment={comment} gameId={id} />)}
                         </div>
                     </div>
                 </div>

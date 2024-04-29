@@ -10,10 +10,13 @@ export async function update(prevState: any, formData: FormData){
     const currentDate = new Date();
 
     const dateString = currentDate.toISOString();
+
+    const gameId = formData.get("gameId")
     
     const data = {
       comment: formData.get("comment"),
-      date: dateString
+      date: dateString,
+      gameId: gameId
     };
 
     const options = {
@@ -26,20 +29,20 @@ export async function update(prevState: any, formData: FormData){
 
     const resp = await fetch(`${process.env.API_BASE_URL}/comment/${id}`, options)
     
-    // if (resp.ok){
-    //   redirect("/categorias")
-    // }
+    if (resp.ok){
+      redirect(`/game/${gameId}`)
+    }
 
-    // if (resp.status == 400){
-    //   return {
-    //     messageNome: "Validação falhou"
-    //   }
-    // }
+    if (resp.status == 400){
+      return {
+        messageNome: "Validação falhou"
+      }
+    }
 
-    // if (resp.status == 404){
-    //   return {
-    //     messageNome: "Categoria não encontrada"
-    //   }
-    // }
+    if (resp.status == 404){
+      return {
+        messageNome: "Categoria não encontrada"
+      }
+    }
     
   }

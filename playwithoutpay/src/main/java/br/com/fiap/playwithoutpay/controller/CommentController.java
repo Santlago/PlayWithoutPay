@@ -24,6 +24,8 @@ import br.com.fiap.playwithoutpay.model.Comment;
 import br.com.fiap.playwithoutpay.repository.CommentRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("comment")
@@ -38,6 +40,12 @@ public class CommentController {
     public List<Comment> index() {
         return repository.findAll();
     }
+
+    @GetMapping("latest")
+    public List<Comment> latest() {
+        return repository.findByOrderByDateDesc();
+    }
+    
 
     // Comment register
     @PostMapping

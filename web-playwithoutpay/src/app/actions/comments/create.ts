@@ -9,9 +9,12 @@ export async function create(formData: FormData) {
 
     const dateString = currentDate.toISOString();
 
+    const gameId = formData.get("gameId");
+
     const data = {
         comment: formData.get("comment"),
-        date: dateString
+        date: dateString,
+        gameId: gameId
     };
 
     const options = {
@@ -25,5 +28,5 @@ export async function create(formData: FormData) {
     const resp = await fetch(`${process.env.API_BASE_URL}/comment`, options);
     const respData = await resp.json()
 
-    // if (resp.status === 201) location.reload();
+    if (resp.status === 201) redirect(`/game/${gameId}`);
 }
